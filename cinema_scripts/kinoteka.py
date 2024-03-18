@@ -22,15 +22,18 @@ def backup_kinoteka(session, cinema_data):
     cinemaLocation = CinemaLocation(cinema[0], location['city'], location['city_code'], location['id'], location['name'], location['coord_latitude'], location['coord_longitude'])
     
     location_id = insert_cinema_locations(cinemaLocation)
-        
-    for x in range(DAYS_START_FROM_TODAY, DAYS_START_FROM_TODAY + DAYS_IN_ADVANCE + 1):
-        date = datetime.now() + timedelta(days=x)
-        date = date.strftime(DATE_MOVIE_SEARCH_FORMAT)
+    
+    if location_id is not None:
+        for x in range(DAYS_START_FROM_TODAY, DAYS_START_FROM_TODAY + DAYS_IN_ADVANCE + 1):
+            date = datetime.now() + timedelta(days=x)
+            date = date.strftime(DATE_MOVIE_SEARCH_FORMAT)
 
-        try:
-            get_movies_from_kinoteka(session, cinema_data, cinema, location_id, date)
-        except Exception as e:
-            return jsonify(error=str(e)), 500  # Return error response
+            try:
+                get_movies_from_kinoteka(session, cinema_data, cinema, location_id, date)
+            except Exception as e:
+                return jsonify(error=str(e)), 500  # Return error response
+    else:
+        return jsonify(error=str("Location not found.")), 500
         
     return jsonify(data="Success"), 200
 
