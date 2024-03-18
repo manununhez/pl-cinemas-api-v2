@@ -5,7 +5,8 @@ from flask import Flask
 from cinema_scripts.kinoteka import backup_kinoteka
 
 app = Flask(__name__)
-    
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
 
 session = requests.Session()  # Create a session object outside of functions
 
