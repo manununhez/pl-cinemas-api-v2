@@ -28,9 +28,11 @@ def backup_kinoteka(session, cinema_data):
         date = date.strftime(DATE_MOVIE_SEARCH_FORMAT)
 
         try:
-            return get_movies_from_kinoteka(session, cinema_data, cinema, location_id, date)
+            get_movies_from_kinoteka(session, cinema_data, cinema, location_id, date)
         except Exception as e:
             return jsonify(error=str(e)), 500  # Return error response
+        
+    return jsonify(data="Success"), 200
 
 def get_movies_from_kinoteka(session, cinema_data, cinema, location_id, date):
     """
