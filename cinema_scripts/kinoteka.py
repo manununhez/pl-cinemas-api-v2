@@ -17,8 +17,8 @@ def backup_kinoteka(session, cinema_data):
     Returns:
         str: Success message if backup is successful, else error message.
     """
-    cinema = get_cinema_by_name(cinema_data["KINOTEKA"]["name"])
-    location = cinema_data["KINOTEKA"]['location']
+    cinema = get_cinema_by_name(cinema_data["name"])
+    location = cinema_data['location']
     cinemaLocation = CinemaLocation(cinema[0], location['city'], location['city_code'], location['id'], location['name'], location['coord_latitude'], location['coord_longitude'])
     
     location_id = insert_cinema_locations(cinemaLocation)
@@ -58,7 +58,7 @@ def get_movies_from_kinoteka(session, cinema_data, cinema, location_id, date):
     language = ""
     movie_urls = []
     
-    response = session.get(cinema_data["KINOTEKA"]["infoUrl"].format(date))
+    response = session.get(cinema_data["infoUrl"].format(date))
 
     soup = BeautifulSoup(response.content, 'html.parser', from_encoding='utf-8')
     movies = soup.find_all('article', class_='e-movie')
