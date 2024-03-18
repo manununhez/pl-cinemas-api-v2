@@ -19,6 +19,6 @@ cinema_data = load_cinema_data()
 
 @app.route("/collect-data")
 def backup():
-    # cleanTables()
+    # clean_tables()
     result = backup_kinoteka(session, cinema_data)
     return result
