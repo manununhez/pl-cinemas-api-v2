@@ -1,0 +1,15 @@
+{
+    "KINOTEKA": {
+        "name": "Kinoteka",
+        "location": {
+            "id": 35,
+            "city": "Warszawa",
+            "city_code": "warszawa",
+            "location": "Warszawa",
+            "name": "Warszawa",
+            "coord_latitude": "52.231816",
+            "coord_longitude": "21.005839"
+        },
+        "infoUrl": "https://kinoteka.pl/repertuar/?date={}"
+    }
+}
